@@ -1,0 +1,36 @@
+@font-face {
+	font-family: 'Montserrat';
+	src: url('../font/Montserrat-Regular.ttf') format('truetype');			 
+	font-weight: normal;
+	font-style: normal;
+}
+    body {
+        font-family: "Montserrat";
+        margin: 5% auto;
+        min-height: 400px;
+        width: 800px;
+        background: azure;
+        border: 1px solid black;
+    }
+
+    #navbar {
+        padding: 15px;
+        background-color: teal;
+    }
+
+    #navbar a, .button {
+        text-decoration: none;
+        padding: 5px 15px;
+        color: white;
+        background-color: tomato;
+    }
+
+    #content {
+        margin: 0 15px;
+        margin-bottom: 10px;
+    } 
+    #navbar a:nth-child(6){
+        margin-top: -5px!important;
+        float: right;
+        background-color: red;
+    }
