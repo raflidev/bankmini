@@ -20,7 +20,14 @@ if(!$_SESSION['login'] == "true"){
         <a href="#home" onclick="contentIndex()">Home</a>
         <a href="#akun" onclick="contentAkun()">Akun</a>
         <a href="#transaksi" onclick="contentTransaksi()">Transaksi</a>
-        <a href="#laporan" onclick="contentLaporan()">Laporan</a>
+        <span class="dropdown">
+            <a href='#'>Informasi</a>
+            <ul class="dropdown-content">
+                <a href="#masterakun" onclick="contentMasterAkun()">Master Akun</a>
+                <!-- <a href="#masteruser" onclick="contentMasterUser()">Master User</a> -->
+                <a href="#laporan" onclick="contentLaporan()">Laporan</a>
+            </ul>
+        </span>
         <a href="#history" onclick="contentHistory()">History</a>
         <a href="logout.php" >Logout</a>
     </div>
@@ -28,12 +35,13 @@ if(!$_SESSION['login'] == "true"){
         
     <script>
 
+
     contentIndex();
     function contentIndex(){
         document.getElementById('content').innerHTML= `
                 <h1>Bank Mini</h1>
         <p>Selamat datang, <?= strtoupper($_SESSION['nama']) ?></p>
-        <p>untuk mengganti menu klik 2x pada tombol menu diatas</p>
+        <p>untuk mengganti menu klik tombol diatas</p>
                 `;
     }
     function contentAkun(){
@@ -72,11 +80,11 @@ if(!$_SESSION['login'] == "true"){
                     <td>
                         <select name="noreg" id="noreg" onchange="tampilDetail()">
                             <?php
-                            $sql = "select * from akun";
+                            $sql = "select * from akun order by nama ASC";
                             $query = mysqli_query($koneksi,$sql);
                             while($row = mysqli_fetch_array($query)){
                             ?>
-                            <option value="<?= $row['id_akun'] ?>"><?= $row['id_akun'] ?></option>
+                            <option value='<?= $row["id_akun"] ?>'><?php echo "$row[nama] - $row[id_akun]"; ?></option>
                             <?php } ?>
                         </select>
                     </td>
@@ -146,7 +154,6 @@ if(!$_SESSION['login'] == "true"){
         <h1>History</h1>
         <table border=1>
             <tr>
-                <th>No</th>
                 <th>No Rekening</th>
                 <th>Nama</th>
                 <th>Saldo</th>
@@ -154,21 +161,51 @@ if(!$_SESSION['login'] == "true"){
             <?php
             $sql = "select * from history";
             $query = mysqli_query($koneksi,$sql);
-            $no = 1;
             while($row= mysqli_fetch_array($query)){
             ?>
             <tr>
-                <td><?= $no++ ?></td>
-                <td width="20%"><?= $row[0] ?></td>
-                <td width="20%"><?= $row[1] ?></td>
-                <td width="60%">Rp.<?= $row[2] ?></td>
+                <td width="15%"><?= $row[1] ?></td>
+                <td width="20%"><?= $row[2] ?></td>
+                <td width="60%">Rp.<?= $row[3] ?></td>
             </tr>
             <?php } ?>
         </table>
     </div>
         `;
+
+        
     }
-    
+    function contentMasterAkun(){
+            document.getElementById('content').innerHTML=`
+                <h1>Master Akun</h1>
+                <form action="masterakun.php" method="post">
+            <table>
+                <tr>
+                    <td><label>No Rekening</label></td>
+                    <td>
+                        <select name="noreg" id="noreg">
+                            <?php
+                            $sql = "select * from akun order by nama ASC";
+                            $query = mysqli_query($koneksi,$sql);
+                            while($row = mysqli_fetch_array($query)){
+                            ?>
+                            <option value='<?= $row["id_akun"] ?>'><?php echo "$row[nama] - $row[id_akun]"; ?></option>
+                            <?php } ?>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Nama</td>
+                    <td><input name="nama" placeholder="Masukan nama baru disini" type="text"></td>
+                </tr>
+                <tr>
+                    <td><input name="perbarui" type="submit" value="Perbarui Akun" class="button"></td>
+                    <td><input name="delete" type="submit" value="Hapus Akun Permanen" class="button"></td>
+                </tr>
+            </table>
+        </form>
+            `;
+        }
 
     </script>
 </body>
