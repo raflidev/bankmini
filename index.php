@@ -37,8 +37,8 @@ if(!$_SESSION['login'] == "true"){
         
     <script>
 
-contentChange()
-    // contentIndex();
+
+    contentIndex();
     function contentIndex(){
         document.getElementById('content').innerHTML= `
                 <h1>Bank Mini</h1>
