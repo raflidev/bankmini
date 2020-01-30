@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jan 23, 2020 at 01:32 PM
+-- Generation Time: Jan 30, 2020 at 03:11 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -55,7 +55,8 @@ INSERT INTO `akun` (`id_akun`, `nama`, `alamat`) VALUES
 -- (See below for the actual view)
 --
 CREATE TABLE `history` (
-`id_akun` char(10)
+`id_transaksi` int(11)
+,`id_akun` char(10)
 ,`nama` varchar(20)
 ,`transaksi` int(11)
 );
@@ -262,7 +263,7 @@ INSERT INTO `user` (`id_user`, `username`, `password`, `level`) VALUES
 --
 DROP TABLE IF EXISTS `history`;
 
-CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `history`  AS  select `transaksi`.`id_akun` AS `id_akun`,`akun`.`nama` AS `nama`,`transaksi`.`transaksi` AS `transaksi` from (`transaksi` left join `akun` on((`transaksi`.`id_akun` = `akun`.`id_akun`))) ;
+CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `history`  AS  select `transaksi`.`id_transaksi` AS `id_transaksi`,`transaksi`.`id_akun` AS `id_akun`,`akun`.`nama` AS `nama`,`transaksi`.`transaksi` AS `transaksi` from (`transaksi` join `akun` on((`akun`.`id_akun` = `transaksi`.`id_akun`))) order by `transaksi`.`id_transaksi` desc limit 10 ;
 
 --
 -- Indexes for dumped tables

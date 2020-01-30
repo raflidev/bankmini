@@ -3,6 +3,7 @@ include 'koneksi.php';
 if(!$_SESSION['login'] == "true"){
     header('location:login.php');
 }
+
 ?>
 
 <!DOCTYPE html>
@@ -24,8 +25,9 @@ if(!$_SESSION['login'] == "true"){
             <a href='#'>Informasi</a>
             <ul class="dropdown-content">
                 <a href="#masterakun" onclick="contentMasterAkun()">Master Akun</a>
-                <!-- <a href="#masteruser" onclick="contentMasterUser()">Master User</a> -->
+                <a href="#masteruser" onclick="contentMasterUser()">Master User</a>
                 <a href="#laporan" onclick="contentLaporan()">Laporan</a>
+                <a href="#change" onclick="contentChange()">Ganti Password</a>
             </ul>
         </span>
         <a href="#history" onclick="contentHistory()">History</a>
@@ -35,8 +37,8 @@ if(!$_SESSION['login'] == "true"){
         
     <script>
 
-
-    contentIndex();
+contentChange()
+    // contentIndex();
     function contentIndex(){
         document.getElementById('content').innerHTML= `
                 <h1>Bank Mini</h1>
@@ -207,6 +209,56 @@ if(!$_SESSION['login'] == "true"){
             `;
         }
 
+        function contentMasterUser(){
+            document.getElementById('content').innerHTML=`
+        <h1>Master User</h1>
+        <table border=1>
+            <tr>
+                <th>Username</th>
+                <th>Level</th>
+                <th>Aksi</th>
+            </tr>
+            <?php
+            $sql = "select * from user where level=0";
+            $query = mysqli_query($koneksi,$sql);
+            while($row= mysqli_fetch_array($query)){
+            ?>
+            <tr>
+                <td width="20%"><?= $row[1] ?></td>
+                <td width="5%"><?= $row[3] ?></td>
+                <td width="20%"><a  href="masteruser.php?accept=<?= $row[0] ?>">Accept</a>
+                <a  href="masteruser.php?deny=<?= $row[0] ?>">deny</a></td>
+            </tr>
+            <?php } ?>
+        </table>
+    </div>
+        `;
+        }
+
+        function contentChange(){
+            document.getElementById('content').innerHTML = `
+                <h1>Ganti Password</h1>
+                <form action="change.php" method="post">
+                    <table>
+                        <tr>
+                            <td><label>Password Saat ini</label></td>
+                            <td><input type="password" name="oldpass"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Password Baru</label></td>
+                            <td><input type="password" name="newpass"></td>
+                        </tr>
+                        <tr>
+                            <td><label>Konfirmasi Password Baru</label></td>
+                            <td><input type="password" name="konnewpass"></td>                            
+                        </tr>
+                        <tr>
+                            <td><input type="submit" value="Simpan Perubahaan" name="change" class="button"></td>
+                        </tr>
+                    </table>
+                </form>
+                `;
+        }
     </script>
 </body>
 

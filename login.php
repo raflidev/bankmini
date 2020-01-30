@@ -12,6 +12,15 @@
 <body>
     <div id="content" >
         <h1>Login</h1>
+    <?php
+    if(isset($_POST['signup'])){
+        $sql = "INSERT into user values (NULL,'$_POST[username]','$_POST[password]',0)";
+        $query = mysqli_query($koneksi,$sql);
+        if(true){
+            echo "Selamat akun anda telah dibuat, tunggu konfirmasi admin";
+        }
+    }
+    ?>
         <form action="" method="post">
             <table>
                 <tr>
@@ -28,13 +37,9 @@
                 </tr>
             </table>
         </form>
-    </div>
-</body>
-
-</html>
-<?php
+    <?php
 if(isset($_POST['signin'])){
-    $sql = "select * from user where username='$_POST[username]' and password='$_POST[password]'";
+    $sql = "select * from user where username='$_POST[username]' and password='$_POST[password]' and level=1";
     $query = mysqli_query($koneksi,$sql);
     if(mysqli_num_rows($query) > 0){
         $row = mysqli_fetch_array($query);
@@ -43,8 +48,13 @@ if(isset($_POST['signin'])){
         $_SESSION['nama'] = "$row[username]";
         header('location:index.php');
     }else{
-        echo "password dan username salah";
+        echo "password atau username salah";
     }
 }
 
+
 ?>
+    </div>
+</body>
+
+</html>
