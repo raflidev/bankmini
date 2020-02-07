@@ -37,7 +37,6 @@ class dashboard extends CI_Controller {
     public function akun()
     {
         $data['allAkun'] = $this->mAkun->getAllAkun();
-
         $this->load->view('akun',$data);
     }
 
@@ -51,10 +50,10 @@ class dashboard extends CI_Controller {
             'id_akun' => $noreg,
             'nama' => "$nama",
             'alamat' => "$alamat"
-             
         );
 
         $this->db->insert('akun',$data);
+        $this->session->set_flashdata('simpan','<div class="alert alert-success" role="alert">Data telah disimpan!</div>');
         redirect(base_url('dashboard/akun'));
     }
 
@@ -75,7 +74,8 @@ class dashboard extends CI_Controller {
             $this->db->select_sum('transaksi');
             $this->db->where('id_akun',$noreg);
             $query = $this->db->get('transaksi')->row_array();            
-            if((int)$query['transaksi'] <= $nominal){                
+            if((int)$query['transaksi'] <= $nominal){
+                $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert">Data gagal disimpan!</div>');
                 redirect(base_url('dashboard/transaksi'));                
             }else{
                 $data = array(
@@ -93,6 +93,7 @@ class dashboard extends CI_Controller {
         }
 
         $this->db->insert('transaksi',$data);
+        $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">Data telah disimpan!</div>');
         redirect(base_url('dashboard/transaksi'));
     }
 
@@ -120,6 +121,7 @@ class dashboard extends CI_Controller {
             $this->db->set('nama',$nama);
             $this->db->where('id_akun',$noreg);
             $this->db->update('akun');
+            $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">Data telah disimpan!</div>');          
         }
         
         if(isset($hapus))
@@ -129,7 +131,10 @@ class dashboard extends CI_Controller {
             $this->db->delete('transaksi');
             $this->db->where('id_akun',$noreg);
             $this->db->delete('akun');
+            $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">Data telah dihapus!</div>');          
+
         }
+        
         redirect(base_url('dashboard/masterakun'));
     }
 
@@ -145,7 +150,7 @@ class dashboard extends CI_Controller {
         $this->db->set('level',1);
         $this->db->where('username',$param);
         $this->db->update('user');
-
+        $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">Akun telah disimpan!</div>');          
         redirect(base_url('dashboard/masteruser'));
     }
 
@@ -153,7 +158,7 @@ class dashboard extends CI_Controller {
     {        
         $this->db->where('username',$param);
         $this->db->delete('user');
-
+        $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">Data telah dihapus!</div>');          
         redirect(base_url('dashboard/masteruser'));
     }
 
@@ -180,15 +185,18 @@ class dashboard extends CI_Controller {
             $this->db->where('username',$this->session->nama);        
             $this->db->update('user');
 
-            $this->session->sess_destroy();            
+            $this->session->sess_destroy();        
+            $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">Password sudah diganti</div>');              
             redirect(base_url('dashboard/'));
         }else{
+            $this->session->set_flashdata('pesan','<div class="alert alert-danger" role="alert">Gagal mengubah!</div>');          
             redirect(base_url('dashboard/change'));
         }
     }
     public function Logout()
     {
         $this->session->sess_destroy();
-        redirect('dashboard');
+        $this->session->set_flashdata('pesan','<div class="alert alert-success" role="alert">Anda telah logout!</div>');          
+        redirect('login');
     }
 }

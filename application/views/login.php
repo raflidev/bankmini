@@ -14,7 +14,10 @@
 
 <body>
     <div class="row  align-items-center">
+    
+
         <div class="col-md-6 m-0 p-0 text-center">
+        <?= $this->session->flashdata('pesan'); ?>
             <h1>BANKMINI</h1>            
             <?= form_open('Login/proses') ?>
                 <div class="form-row justify-content-center">
