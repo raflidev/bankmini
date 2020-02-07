@@ -20,7 +20,7 @@
         <div class="row">
             <div class="col-md-12  p-0">
                 <div class="box-l">
-                    <span>Total Transaksi (Juta Rupiah)</span>
+                    <span>Transaksi Perbulan</span>
                     <div>
                         <canvas id="canvas" width="829px" height="250px"></canvas>
                     </div>
@@ -37,19 +37,10 @@
                                     backgroundColor: '#29294D',
                                     pointBorderWidth: 8,
                                     data: [
-                                        0,
-                                        100,
-                                        0,
-                                        100,
-                                        0,
-                                        100,
-                                        0,
-                                        100,
-                                        0,
-                                        100,
-                                        0,
-                                        100,
-
+                                        <?php foreach($laporan as $row) :
+                                        echo $row->jumlah_bulanan.","; 
+                                        endforeach
+                                            ?>                               
                                     ],
                                     fill: false,
                                 }]

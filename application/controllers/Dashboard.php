@@ -23,7 +23,12 @@ class dashboard extends CI_Controller {
             redirect('Login');
         }   
         $data['countUser'] = $this->mUser->getCountUser();
-        $data['countTransaksi'] = $this->mTransaksi->getCountTransaksi();         
+        $data['countTransaksi'] = $this->mTransaksi->getCountTransaksi();
+        $tahun = date('Y');
+
+        $query = $this->db->query("SELECT MONTH(tanggal) AS bulan, COUNT(*) AS jumlah_bulanan FROM transaksi WHERE YEAR(tanggal)= '$tahun' GROUP BY MONTH(tanggal)");                
+        $data['laporan'] = $query->result();
+
         $this->load->view('template/header');
         $this->load->view('index', $data);
         $this->load->view('template/footer');    

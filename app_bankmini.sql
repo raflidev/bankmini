@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 07, 2020 at 04:23 AM
+-- Generation Time: Feb 07, 2020 at 03:13 PM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -39,6 +39,7 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`id_akun`, `nama`, `alamat`) VALUES
+('159429314', 'Fujimaru', 'Singularity 7'),
 ('296861387', 'Rafli', 'Puri\r\n');
 
 -- --------------------------------------------------------
@@ -85,7 +86,12 @@ CREATE TABLE `transaksi` (
 
 INSERT INTO `transaksi` (`id_transaksi`, `id_akun`, `tanggal`, `transaksi`) VALUES
 (184, '296861387', '2020-02-04', 100000),
-(185, '296861387', '2020-02-06', 2000);
+(185, '296861387', '2020-02-06', 2000),
+(186, '296861387', '2020-01-08', 5000),
+(187, '296861387', '2020-02-07', 100000),
+(188, '159429314', '2020-02-07', 50000),
+(189, '159429314', '2020-02-07', 50000),
+(190, '296861387', '2020-02-07', 211);
 
 -- --------------------------------------------------------
 
@@ -158,7 +164,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=191;
 
 --
 -- AUTO_INCREMENT for table `user`
