@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 05, 2020 at 04:34 PM
+-- Generation Time: Feb 07, 2020 at 04:23 AM
 -- Server version: 10.1.37-MariaDB
 -- PHP Version: 7.2.12
 
@@ -39,11 +39,7 @@ CREATE TABLE `akun` (
 --
 
 INSERT INTO `akun` (`id_akun`, `nama`, `alamat`) VALUES
-('1552453831', 'Rafli', 'Puri'),
-('160323987', 'Sujudi', 'Bumi Anggrek'),
-('5128148686', 'Rendy', 'Alamanda'),
-('7436863800', 'Naufal', 'karang satria'),
-('9786121347', 'Fujimaru', '');
+('296861387', 'Rafli', 'Puri\r\n');
 
 -- --------------------------------------------------------
 
@@ -79,6 +75,7 @@ CREATE TABLE `laporan` (
 CREATE TABLE `transaksi` (
   `id_transaksi` int(11) NOT NULL,
   `id_akun` char(10) NOT NULL,
+  `tanggal` date NOT NULL,
   `transaksi` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -86,28 +83,9 @@ CREATE TABLE `transaksi` (
 -- Dumping data for table `transaksi`
 --
 
-INSERT INTO `transaksi` (`id_transaksi`, `id_akun`, `transaksi`) VALUES
-(160, '7436863800', 10000),
-(161, '5128148686', 90000),
-(162, '5128148686', -10000),
-(163, '7436863800', 50000),
-(164, '5128148686', 10000),
-(165, '7436863800', 40000),
-(166, '7436863800', -60000),
-(167, '5128148686', 60000),
-(168, '5128148686', 15000),
-(169, '7436863800', 90000),
-(170, '5128148686', 0),
-(171, '5128148686', -155000),
-(172, '5128148686', 2147483647),
-(173, '1552453831', 0),
-(174, '1552453831', 10000),
-(175, '1552453831', -10000),
-(176, '1552453831', 50000),
-(177, '1552453831', -10000),
-(178, '1552453831', -100000),
-(180, '1552453831', 600000),
-(181, '9786121347', 60000000);
+INSERT INTO `transaksi` (`id_transaksi`, `id_akun`, `tanggal`, `transaksi`) VALUES
+(184, '296861387', '2020-02-04', 100000),
+(185, '296861387', '2020-02-06', 2000);
 
 -- --------------------------------------------------------
 
@@ -180,7 +158,7 @@ ALTER TABLE `user`
 -- AUTO_INCREMENT for table `transaksi`
 --
 ALTER TABLE `transaksi`
-  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=182;
+  MODIFY `id_transaksi` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=186;
 
 --
 -- AUTO_INCREMENT for table `user`

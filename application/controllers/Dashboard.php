@@ -9,6 +9,7 @@ class dashboard extends CI_Controller {
         
         parent::__construct();
         $this->load->helper('url');
+        $this->load->helper('date');
         $this->load->library('session');
         $this->load->model('mUser');
         $this->load->model('mTransaksi');
@@ -17,7 +18,7 @@ class dashboard extends CI_Controller {
     }
     
 	public function index()
-	{
+	{         
         if(!isset($this->session->login)){
             redirect('Login');
         }   
@@ -63,24 +64,25 @@ class dashboard extends CI_Controller {
         $noreg = $this->input->post('noreg');
         $metode = $this->input->post('metode');
         $nominal = $this->input->post('nominal');
-
+        $waktu = date('Y-m-d');
         
         if($metode == "debet"){
             $this->db->select_sum('transaksi');
             $this->db->where('id_akun',$noreg);
-            $query = $this->db->get('transaksi')->result_array();                 
-            // masih error int mengabaikan 0
-            if((int)$query[0] <= $nominal){                
+            $query = $this->db->get('transaksi')->row_array();            
+            if((int)$query['transaksi'] <= $nominal){                
                 redirect(base_url('dashboard/transaksi'));                
             }else{
                 $data = array(
                     'id_akun' => $noreg,
+                    'tanggal' => $waktu,
                     'transaksi' => -$nominal
                 );
             }
         }else{
             $data = array(
                 'id_akun' => $noreg,
+                'tanggal' => $waktu,
                 'transaksi' => (int)$nominal
             );
         }
@@ -116,7 +118,10 @@ class dashboard extends CI_Controller {
         }
         
         if(isset($hapus))
-        {
+        {            
+
+            $this->db->where('id_akun',$noreg);
+            $this->db->delete('transaksi');
             $this->db->where('id_akun',$noreg);
             $this->db->delete('akun');
         }

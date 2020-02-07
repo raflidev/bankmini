@@ -11,6 +11,9 @@ class Login extends CI_Controller {
     
 	public function index()
 	{
+        if(isset($this->session->nama)){
+            redirect(base_url('dashboard/'));    
+        }
 		$this->load->view('login.php');
     }
     public function proses()
