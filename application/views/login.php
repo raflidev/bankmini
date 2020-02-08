@@ -4,6 +4,10 @@
 <head>
     <!-- Required meta tags -->
     <meta charset="utf-8">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?=base_url('vendor')?>/icon//apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?=base_url('vendor')?>/icon//favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?=base_url('vendor')?>/icon//favicon-16x16.png">
+
     <!-- <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no"> -->
 
     <!-- Bootstrap CSS -->
@@ -15,6 +19,7 @@
 <body>
     <div class="row  align-items-center">
         <div class="col-md-6 m-0 p-0 text-center">
+        <?= $this->session->flashdata('pesan'); ?>
             <h1>BANKMINI</h1>            
             <?= form_open('Login/proses') ?>
                 <div class="form-row justify-content-center">

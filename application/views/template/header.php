@@ -5,6 +5,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link rel="apple-touch-icon" sizes="180x180" href="<?=base_url('vendor')?>/icon//apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="<?=base_url('vendor')?>/icon//favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="<?=base_url('vendor')?>/icon//favicon-16x16.png">
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="<?= base_url() ?>/vendor/css/bootstrap.min.css">
