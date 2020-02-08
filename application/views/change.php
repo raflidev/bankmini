@@ -7,17 +7,20 @@
                 <div class="sub">
                     Ganti Password
                 </div>
-                <?= form_open('dashboard/changeProses') ?>
+                <?= form_open('dashboard/change') ?>
                     <div class="form-row ">
                         <div class="col-12">
                             <div>
                                 <input type="password" class="form-control white" name="oldpass" placeholder="Password Lama">
+                                <?php echo form_error('oldpass'); ?>  
                             </div>                         
                             <div>
                                 <input type="password" class="form-control white" name="newpass" placeholder="Password Baru" name="nama">
+                                <?php echo form_error('newpass'); ?>  
                             </div>
                             <div>
                                 <input type="password" class="form-control white" name="newpass2" placeholder="Konfirmasi Password Baru" name="nama">
+                                <?php echo form_error('newpass2'); ?>  
                             </div>
                         </div>
                     </div>

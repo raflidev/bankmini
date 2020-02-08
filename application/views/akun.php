@@ -1,25 +1,26 @@
 <?php include "template/header.php" ?>
 <div class="body-content">
     <div class="container">
-    <?= $this->session->flashdata('simpan'); ?>
-</div> 
-    
+    <?= $this->session->flashdata('pesan'); ?>
         <div class="row">
             <div class="col-md-5 p-0 m-0">
                 <div class="sub">
                     Akun
                 </div>
-                <?= form_open('dashboard/akunInsert') ?>
+                <?= form_open('dashboard/akun') ?>
                     <div class="form-row ">
                         <div class="col-12">
                             <div>
                                 <input type="number" name="noreg" value="<?= rand(); ?>" class="form-control white" placeholder="No Rekening" >
+                                <?php echo form_error('noreg'); ?>
                             </div>
                             <div>
                                 <input type="name" name="name" class="form-control white" placeholder="Nama">
+                                <?php echo form_error('name'); ?>
                             </div>
                             <div>
                                 <textarea class="form-control white" name="alamat" placeholder="Alamat" rows="3"></textarea>
+                                <?php echo form_error('alamat'); ?>
                             </div>
                         </div>
                     </div>

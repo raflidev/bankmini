@@ -2,13 +2,12 @@
 <div class="body-content">
     <div class="container">
     <?= $this->session->flashdata('pesan'); ?>
-
         <div class="row">
             <div class="col-md-5 p-0 m-0">
                 <div class="sub">
                     Transaksi
                 </div>
-                <?= form_open('dashboard/transaksiInsert') ?>
+                <?= form_open('dashboard/transaksi') ?>
                     <div class="form-row ">
                         <div class="col-12">
                             <div>
@@ -17,7 +16,8 @@
                                     <?php foreach ($allAkun as $row): ?>
                                     <option value="<?= $row->id_akun ?>"><?= $row->nama." - ".$row->id_akun ?></option>
                                     <?php endforeach ?>
-                                </select>                                
+                                </select>              
+                                <?php echo form_error('noreg'); ?>                  
                             </div>
                             <div>
                                 <select class="form-control white" name="metode" id="">
@@ -25,9 +25,11 @@
                                     <option value="kredit">Kredit</option>
                                     <option value="debet">Debet</option>
                                 </select>
+                                <?php echo form_error('metode'); ?>
                             </div>
                             <div>
                                 <input class="form-control white" placeholder="Nominal" name="nominal">
+                                <?php echo form_error('nominal'); ?>
                             </div>
                         </div>
                     </div>

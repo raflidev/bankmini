@@ -1,7 +1,5 @@
 <div class="body-content">
     <div class="container">
-    <?= $this->session->flashdata('pesan'); ?>
-    
         <div class="sub">
             Overview
         </div>

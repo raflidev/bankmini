@@ -12,7 +12,7 @@
     <link rel="stylesheet" href="<?= base_url() ?>/vendor/css/font.css">
     <script src="<?= base_url() ?>/vendor/js/chart.js"></script>
     <script src="<?= base_url() ?>/vendor/js/feather.min.js"></script>
-    <title>BANKMINI — dashboard</title>
+    <title>BANKMINI — Dashboard</title>
 </head>
 
 <body>
